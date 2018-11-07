@@ -1,3 +1,4 @@
+import { Employee } from './../models/employee.model';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Department } from '../models/department.model';
@@ -14,6 +15,9 @@ export class CreateEmployeeComponent implements OnInit {
   contact = 'email';
   isActive = true;
   department = '3';
+  photoPath = 'assets/images/mark.png';
+  hidden_yn: boolean = true;
+  preview_value: string = "Show Preview";
   dateOfBirth: Date = new Date();
   departments: Department[] = [
     {id: 1, name: "Help Desk"},
@@ -21,19 +25,40 @@ export class CreateEmployeeComponent implements OnInit {
     {id: 3, name: "IT"},
     {id: 4, name: "Paroll"}
   ];
+  employee: Employee = {
+    id: null, 
+    name: null,
+    gender: null,
+    email: null,
+    phoneNumber: null,
+    contactPreference: null,
+    dateOfBirth: null,
+    department: null, 
+    isActive: null,
+    photoPath: null
+  };
   constructor() { 
     this.datePickerConfig = Object.assign({}, 
       {
         containerClass: 'theme-dark-blue', 
         showWeekNumbers: false 
       });
+      
   }
 
   ngOnInit() {
   }
 
-  saveEmployee(employee: NgForm): void{
-    console.log(employee.value);
+  saveEmployee(employee: Employee): void{
+    console.log(employee);
+  }
+
+  showPreview(){
+    this.hidden_yn = !this.hidden_yn;
+    if(this.hidden_yn)
+      this.preview_value = "Show Preview";
+    else
+      this.preview_value = "Hide Preview"
   }
 
 }
