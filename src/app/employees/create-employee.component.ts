@@ -33,7 +33,7 @@ export class CreateEmployeeComponent implements OnInit {
     phoneNumber: null,
     contactPreference: null,
     dateOfBirth: null,
-    department: "-1", 
+    department: null, 
     isActive: null,
     photoPath: null
   };
