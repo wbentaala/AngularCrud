@@ -43,7 +43,16 @@ export class EmployeeService{
           return this.employees;
       }
 
+      getEmployee(employeeId: number) : Employee{
+        console.log(employeeId);
+        return this.employees.find(e=>e.id===employeeId);
+      }
+
       save(employee: Employee){
         this.employees.push();
+      }
+
+      getEmployeesSize(): number{
+        return this.employees.length;
       }
 }

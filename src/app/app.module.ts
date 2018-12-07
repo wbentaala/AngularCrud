@@ -13,17 +13,24 @@ import { CreateEmployeeCanDeactivatGuardService } from './services/create-employ
 import { EmployeeDetailsComponent } from './employees/employee-details/employee-details.component';
 
 const appRoutes: Routes = [
-  {path: 'list', component: ListeEmployeesComponent},
+  {
+    path: 'list', 
+    component: ListeEmployeesComponent
+  },
   {
     path: 'create', 
     component: CreateEmployeeComponent,
     canDeactivate: [CreateEmployeeCanDeactivatGuardService]
   },
   {
-    path: 'details/:id', 
+    path: 'employees/:id', 
     component: EmployeeDetailsComponent
   },
-  {path: '', redirectTo: '/list', pathMatch: 'full'}
+  {
+    path: '', 
+    redirectTo: '/list', 
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({
