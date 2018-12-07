@@ -7,10 +7,22 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { AppComponent } from './app.component';
 import { ListeEmployeesComponent } from './employees/liste-employees.component';
 import { CreateEmployeeComponent } from './employees/create-employee.component';
+import { EmployeeService } from './services/employee.service';
+import { DisplayEmployeeComponent } from './employees/display-employee/display-employee.component';
+import { CreateEmployeeCanDeactivatGuardService } from './services/create-employee-can-deactivate-guard.service';
+import { EmployeeDetailsComponent } from './employees/employee-details/employee-details.component';
 
 const appRoutes: Routes = [
   {path: 'list', component: ListeEmployeesComponent},
-  {path: 'create', component: CreateEmployeeComponent},
+  {
+    path: 'create', 
+    component: CreateEmployeeComponent,
+    canDeactivate: [CreateEmployeeCanDeactivatGuardService]
+  },
+  {
+    path: 'details/:id', 
+    component: EmployeeDetailsComponent
+  },
   {path: '', redirectTo: '/list', pathMatch: 'full'}
 ];
 
@@ -18,7 +30,8 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     ListeEmployeesComponent,
-    CreateEmployeeComponent
+    CreateEmployeeComponent, 
+    DisplayEmployeeComponent, EmployeeDetailsComponent
   ],
   imports: [
     BrowserModule, 
@@ -26,7 +39,8 @@ const appRoutes: Routes = [
     BsDatepickerModule.forRoot(),
     FormsModule
   ],
-  providers: [],
+  providers: [EmployeeService, 
+              CreateEmployeeCanDeactivatGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

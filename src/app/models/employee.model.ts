@@ -9,4 +9,5 @@ export class Employee{
     department: string; 
     isActive: boolean;
     photoPath?: string;
+    password: string;
 }
