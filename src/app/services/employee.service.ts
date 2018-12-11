@@ -1,4 +1,6 @@
 import { Employee } from "../models/employee.model";
+import { Observable, of } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 export class EmployeeService{
     private employees = [
@@ -39,8 +41,8 @@ export class EmployeeService{
           password: null
         },
       ];
-      getEmployees() : Employee[]{
-          return this.employees;
+      getEmployees(): Observable<Employee[]>{
+          return of(this.employees).pipe(delay(2000));
       }
 
       getEmployee(employeeId: number) : Employee{
