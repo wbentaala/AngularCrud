@@ -1,6 +1,12 @@
-<H1 #h1attr></H1>
-<div class="panel panel-primary" *ngFor="let employee of employees">
-  <div (click)="h1attr.innerHTML = childComponent.getEmployeeInfos()" >
+<div>
+  <button class="btn btn-primary" (click)="changeName()">Change Name</button>
+</div>
+<div>
+  <input type="text" placeholder="Search By Name" class="form-control" style="width: 300px" [(ngModel)]="searchTerm" />
+</div>
+<br />
+<div class="panel panel-primary" *ngFor="let employee of filtredEmployees">
+  <div (click)="handleClick(employee)" class="cursorPointer">
     <app-display-employee [employee]="employee" #childComponent></app-display-employee>
   </div>
 </div>
