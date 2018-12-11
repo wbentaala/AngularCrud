@@ -1,7 +1,8 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { Employee } from '../models/employee.model';
 import { EmployeeService } from '../services/employee.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-liste-employees',
@@ -24,13 +25,18 @@ export class ListeEmployeesComponent implements OnInit {
 
   filtredEmployees: Employee[];
   constructor(private _employeeService : EmployeeService, 
-              private _router: Router) {
+              private _router: Router, 
+              private _route: ActivatedRoute) {
     
    }
 
   ngOnInit() {
-    this.employees = this._employeeService.getEmployees();
-    this.filtredEmployees = this.employees;
+    this._employeeService.getEmployees().subscribe(emp=>{
+      this.employees = emp;
+    });
+    this._route.queryParamMap.subscribe((param)=>{
+      this.searchTerm  = param.get('searchTerm');
+    });
   }
 
   filterEmployees(searchString: string): Employee[]{
