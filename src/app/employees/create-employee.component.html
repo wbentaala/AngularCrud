@@ -1,4 +1,4 @@
-<form #employeeForm="ngForm" ngNativeValidate (ngSubmit)="saveEmployee()">
+<form #employeeForm="ngForm" ngNativeValidate (ngSubmit)="saveEmployee(employeeForm)">
   <div class="panel panel-primary">
     <div class="panel-heading">
       <h3 class="panel-title">Add Employee</h3>
@@ -100,8 +100,4 @@
   </div>
 </form>
 
-{{employeeForm.value | json}}
-
 <br><br>
-
-Employee model : {{ employee | json }}

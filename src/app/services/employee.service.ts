@@ -49,7 +49,7 @@ export class EmployeeService{
       }
 
       save(employee: Employee){
-        this.employees.push();
+        this.employees.push(employee);
       }
 
       getEmployeesSize(): number{
